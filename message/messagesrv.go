@@ -26,5 +26,10 @@ func (srv *MessageSrv) Get(id string) (*Message, error) {
 		return nil, apierror.New(400, "Message ID is required")
 	}
 
-	return srv.Get(id)
+	msg, err := srv.api.Get(id)
+	if err != nil {
+		return nil, err
+	}
+
+	return build(msg), nil
 }

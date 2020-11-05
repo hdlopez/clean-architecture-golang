@@ -9,7 +9,7 @@ import (
 
 const (
 	// userAPIURL is a context url to config API
-	messageAPIURL = "/messages/%d"
+	messageAPIURL = "http://localhost:3000/messages/%s"
 )
 
 type MessageAPI struct {

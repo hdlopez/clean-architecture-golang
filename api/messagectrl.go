@@ -33,12 +33,18 @@ func (ctrl *messageCtrl) Get(c *gin.Context) {
 	// 3 - Make what you need with your request. In this case, get the message by ID.
 	msg, err := ctrl.srv.Get(id)
 	if err != nil {
-		apiErr := err.(*apierror.APIError)
-		// in case of any errors, build the response properly
-		c.JSON(apiErr.Code(), apiErr)
-	} else {
-		// returns my message.Message object
-		c.JSON(http.StatusOK, msg)
+		apiErr, ok := err.(*apierror.APIError)
+		if ok {
+			// in case of known API errors, build the response properly
+			c.JSON(apiErr.Code(), apiErr)
+			return
+		}
+
+		c.JSON(http.StatusInternalServerError, err)
+		return
 	}
+
+	// returns my message.Message object
+	c.JSON(http.StatusOK, msg)
 	return
 }

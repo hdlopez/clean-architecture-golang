@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/go-resty/resty/v2"
+	resty "github.com/go-resty/resty/v2"
 	"github.com/hdlopez/clean-architecture-golang/apierror"
 )
 
@@ -25,6 +25,7 @@ func (api *restAPI) get(url string, h http.Header, v interface{}) (interface{}, 
 
 	if err != nil {
 		// returns API error
+		return nil, err
 	}
 
 	//api.logger.httpGet(url, h, r, time.Since(start))
