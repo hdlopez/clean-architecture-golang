@@ -12,7 +12,11 @@ const (
 	messageAPIURL = "http://localhost:3000/messages/%s"
 )
 
-type MessageAPI struct {
+type MessageAPI interface {
+	Get(id string) (*Message, error)
+}
+
+type msgAPI struct {
 	restAPI
 }
 
@@ -20,8 +24,8 @@ type Message struct {
 	Text string `json:"text"`
 }
 
-func NewMessageAPI() *MessageAPI {
-	api := new(MessageAPI)
+func NewMessageAPI() MessageAPI {
+	api := new(msgAPI)
 
 	// Create a Resty Client
 	client := resty.New()
@@ -34,11 +38,11 @@ func NewMessageAPI() *MessageAPI {
 	return api
 }
 
-func (api *MessageAPI) readURL(id string) string {
+func (api *msgAPI) readURL(id string) string {
 	return fmt.Sprintf(messageAPIURL, id)
 }
 
-func (api *MessageAPI) Get(id string) (*Message, error) {
+func (api *msgAPI) Get(id string) (*Message, error) {
 	url := api.readURL(id)
 
 	msg := new(Message)

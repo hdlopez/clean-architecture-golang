@@ -9,12 +9,7 @@ import (
 
 // MessageCtrl handles message entity
 type messageCtrl struct {
-	srv messageSrv
-}
-
-// messageSrv interface is mainly useful for testing purposes
-type messageSrv interface {
-	Get(ID string) (*message.Message, error)
+	srv message.Service
 }
 
 // New creates a new instance of MessageCtrl (by convention)
