@@ -18,6 +18,8 @@ func New() *API {
 	return api
 }
 
+// ginCtx interface is an abstraction of gin.Context.
+// This interface makes mocking on unit testing easier
 type ginCtx interface {
 	Param(key string) string
 
@@ -25,7 +27,7 @@ type ginCtx interface {
 	JSON(code int, obj interface{})
 }
 
-// Run the API
+// Run function runs our API application
 func (api *API) Run() {
 	r := gin.Default()
 
