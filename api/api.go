@@ -18,6 +18,13 @@ func New() *API {
 	return api
 }
 
+type ginCtx interface {
+	Param(key string) string
+
+	String(code int, format string, values ...interface{})
+	JSON(code int, obj interface{})
+}
+
 // Run the API
 func (api *API) Run() {
 	r := gin.Default()
@@ -29,6 +36,6 @@ func (api *API) Run() {
 
 // configRoutes set all the API endpoints
 func (api *API) configRoutes(r *gin.Engine) {
-	r.GET("/ping", api.pingCtrl.Ping)
-	r.GET("/messages/:id", api.msgCtrl.Get)
+	r.GET("/ping", func(c *gin.Context) { api.pingCtrl.Ping(c) })
+	r.GET("/messages/:id", func(c *gin.Context) { api.msgCtrl.Get(c) })
 }

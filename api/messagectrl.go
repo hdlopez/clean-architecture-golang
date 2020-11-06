@@ -3,7 +3,6 @@ package api
 import (
 	"net/http"
 
-	"github.com/gin-gonic/gin"
 	"github.com/hdlopez/clean-architecture-golang/apierror"
 	"github.com/hdlopez/clean-architecture-golang/message"
 )
@@ -25,13 +24,14 @@ func newMsgCtrl() *messageCtrl {
 	return ctrl
 }
 
-func (ctrl *messageCtrl) Get(c *gin.Context) {
+func (ctrl *messageCtrl) Get(c ginCtx) {
 	// 1 - Unmashall user parameters from gin.Context
 	id := c.Param("id")
 	// 2 - Check and handle validation errors (no business validation)
 
 	// 3 - Make what you need with your request. In this case, get the message by ID.
 	msg, err := ctrl.srv.Get(id)
+
 	if err != nil {
 		apiErr, ok := err.(*apierror.APIError)
 		if ok {
