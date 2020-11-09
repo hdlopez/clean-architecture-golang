@@ -35,7 +35,7 @@ func (ctrl *messageCtrl) Get(c ginCtx) {
 			return
 		}
 
-		c.JSON(http.StatusInternalServerError, err)
+		c.JSON(http.StatusInternalServerError, apierror.FromError(err))
 		return
 	}
 

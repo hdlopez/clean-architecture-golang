@@ -13,8 +13,12 @@ type messageSrv struct {
 }
 
 func NewService() Service {
+	return NewServiceWith(NewRepository())
+}
+
+func NewServiceWith(r Repository) Service {
 	srv := new(messageSrv)
-	srv.repo = NewRepository()
+	srv.repo = r
 	return srv
 }
 
