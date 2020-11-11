@@ -2,7 +2,9 @@
 
 This is my humble version of how to structure an application in Golang. 
 
-In order to demostrate my idea with an almost real example, I created a API which handles messages. 
+Link to [my article](https://collectednotes.com/hdlopez/como-estructurar-tu-aplicacion-en-go) (currently only in spanish) about "How to structure a Go Application".
+
+In order to demonstrate my idea with a simple example application, I created this API which handles messages. 
 
 ## Frameworks
 

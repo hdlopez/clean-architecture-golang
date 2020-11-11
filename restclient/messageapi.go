@@ -42,6 +42,7 @@ func (api *msgAPI) readURL(id string) string {
 	return fmt.Sprintf(messageAPIURL, id)
 }
 
+// Get a message from our external Message API
 func (api *msgAPI) Get(id string) (*Message, error) {
 	url := api.readURL(id)
 
