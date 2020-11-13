@@ -7,20 +7,20 @@ import (
 // API type
 type API struct {
 	pingCtrl *pingCtrl
-	msgCtrl  *messageCtrl
+	msgCtrl  MessageController
 }
 
 // New creates a new instance of API type
-func New() *API {
+func New(msgCtrl MessageController) *API {
 	api := new(API)
-	api.msgCtrl = newMsgCtrl()
+	api.msgCtrl = msgCtrl
 	api.pingCtrl = newPingCtrl()
 	return api
 }
 
-// ginCtx interface is an abstraction of gin.Context.
+// ApiCtx interface is an abstraction of gin.Context.
 // This interface makes mocking on unit testing easier
-type ginCtx interface {
+type Ctx interface {
 	Param(key string) string
 
 	String(code int, format string, values ...interface{})

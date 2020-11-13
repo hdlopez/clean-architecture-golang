@@ -12,9 +12,9 @@ type msgRepo struct {
 	api restclient.MessageAPI
 }
 
-func NewRepository() Repository {
+func NewRepository(api restclient.MessageAPI) Repository {
 	repo := new(msgRepo)
-	repo.api = restclient.NewMessageAPI()
+	repo.api = api
 	return repo
 }
 
