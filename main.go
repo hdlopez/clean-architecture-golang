@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	// Create a Resty Client
+	// Dependency injection section
 	clients := config.RestClients()
 
 	msgAPI := restclient.NewMessageAPI(clients[config.MessageAPI])
@@ -17,10 +17,10 @@ func main() {
 
 	msgSrv := message.Service(msgRepo)
 	msgCtrl := api.NewMessageController(msgSrv)
-	// Creates an instance of API
+
+	// Creates the API intance
 	api := api.New(msgCtrl)
 
-	// calls the Run function
-	// to start the application
+	// Runs the application
 	api.Run()
 }
