@@ -7,19 +7,23 @@ import (
 	"github.com/hdlopez/clean-architecture-golang/message"
 )
 
-// MessageCtrl handles message entity
+type MessageController interface {
+	Get(c Ctx)
+}
+
+// messageCtrl handles message entity
 type messageCtrl struct {
 	srv message.Service
 }
 
-// New creates a new instance of MessageCtrl (by convention)
-func newMsgCtrl() *messageCtrl {
+// NewMessageController creates a new instance of messageCtrl
+func NewMessageController(srv message.Service) MessageController {
 	ctrl := new(messageCtrl)
-	ctrl.srv = message.NewService()
+	ctrl.srv = srv
 	return ctrl
 }
 
-func (ctrl *messageCtrl) Get(c ginCtx) {
+func (ctrl *messageCtrl) Get(c Ctx) {
 	// 1 - Unmashall user parameters from gin.Context
 	id := c.Param("id")
 	// 2 - Check and handle validation errors (no business validation)

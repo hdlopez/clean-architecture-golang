@@ -12,11 +12,7 @@ type messageSrv struct {
 	repo Repository
 }
 
-func NewService() Service {
-	return NewServiceWith(NewRepository())
-}
-
-func NewServiceWith(r Repository) Service {
+func NewService(r Repository) Service {
 	srv := new(messageSrv)
 	srv.repo = r
 	return srv

@@ -23,7 +23,7 @@ func Test_messageSrv_Get(t *testing.T) {
 	// creates in memory message repository
 	repo := NewInmemRepository()
 	// create new service instance in order to test
-	srv := NewServiceWith(repo)
+	srv := NewService(repo)
 
 	type args struct {
 		id string

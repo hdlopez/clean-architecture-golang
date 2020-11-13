@@ -24,17 +24,9 @@ type Message struct {
 	Text string `json:"text"`
 }
 
-func NewMessageAPI() MessageAPI {
+func NewMessageAPI(c *resty.Client) MessageAPI {
 	api := new(msgAPI)
-
-	// Create a Resty Client
-	client := resty.New()
-	// You probably need to configure timeouts
-	// and retries strategies for message API
-
-	api.readClient = client
-
-	//api.logger = &apiLogger{}
+	api.readClient = c
 	return api
 }
 
