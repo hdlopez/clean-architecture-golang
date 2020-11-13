@@ -1,3 +1,5 @@
+![Go](https://github.com/hdlopez/clean-architecture-golang/workflows/Go/badge.svg)
+
 # Clean Archiecture in Go
 
 This is my humble version of how to structure an application in Golang. 
@@ -31,7 +33,6 @@ go test ./...
 
 > This is a work in progress. There's still a lot of work to do. PRs are welcome :)
 * Add (a LOT) of unit tests
-* Add CI integration
 * Use `Context` type to pass parameters across different layers
 * Add an example of database handler module
 
