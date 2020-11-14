@@ -1,6 +1,6 @@
 ![Go](https://github.com/hdlopez/clean-architecture-golang/workflows/Go/badge.svg)
 
-# Clean Archiecture in Go
+# Clean Architecture in Go
 
 This is my humble version of how to structure a GO application. 
 
