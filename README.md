@@ -2,7 +2,7 @@
 
 # Clean Archiecture in Go
 
-This is my humble version of how to structure an application in Golang. 
+This is my humble version of how to structure a GO application. 
 
 Link to [my article](https://collectednotes.com/hdlopez/como-estructurar-tu-aplicacion-en-go) (currently only in spanish) about "How to structure a Go Application".
 
