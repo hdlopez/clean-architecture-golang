@@ -10,13 +10,9 @@ import (
 
 type restAPI struct {
 	readClient *resty.Client
-	//writeClient func() *resty.Client
-	//logger   *apiLogger
 }
 
-func (api *restAPI) get(url string, h http.Header, v interface{}) (interface{}, error) {
-	//start := time.Now()
-
+func (api *restAPI) get(url string, h http.Header, v interface{}) error {
 	var r *resty.Response
 	req := api.readClient.R()
 	req.SetError(&apierror.APIError{})
@@ -25,16 +21,17 @@ func (api *restAPI) get(url string, h http.Header, v interface{}) (interface{}, 
 
 	if err != nil {
 		// returns API error
-		return nil, err
+		return err
 	}
 
-	//api.logger.httpGet(url, h, r, time.Since(start))
 	if r.StatusCode() != 200 {
 		// returns API error
+		return apierror.New(r.StatusCode(), "Status code was not 200")
 	}
 
 	if err = json.Unmarshal(r.Body(), v); err != nil {
 		// returns API error
+		return apierror.New(500, "Unmarshal error")
 	}
-	return v, nil
+	return nil
 }

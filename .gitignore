@@ -16,3 +16,6 @@
 
 # OS X
 .DS_Store
+
+# Visual Studio code hidden files
+.vscode

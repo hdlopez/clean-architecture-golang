@@ -21,7 +21,7 @@ type msgAPI struct {
 }
 
 type Message struct {
-	Text string `json:"text"`
+	Text *string `json:"text"`
 }
 
 func NewMessageAPI(c *resty.Client) MessageAPI {
@@ -39,10 +39,7 @@ func (api *msgAPI) Get(id string) (*Message, error) {
 	url := api.readURL(id)
 
 	msg := new(Message)
-	res, err := api.get(url, http.Header{}, msg)
-
-	// type assertion
-	msg, _ = res.(*Message)
+	err := api.get(url, http.Header{}, msg)
 
 	return msg, err
 }
