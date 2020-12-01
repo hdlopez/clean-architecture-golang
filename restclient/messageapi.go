@@ -21,7 +21,7 @@ type msgAPI struct {
 }
 
 type Message struct {
-	Text *string `json:"text"`
+	Text string `json:"text"`
 }
 
 func NewMessageAPI(c *resty.Client) MessageAPI {
