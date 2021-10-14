@@ -18,7 +18,7 @@ func New(msgCtrl MessageController) *API {
 	return api
 }
 
-// ApiCtx interface is an abstraction of gin.Context.
+// Ctx interface is an abstraction of gin.Context.
 // This interface makes mocking on unit testing easier
 type Ctx interface {
 	Param(key string) string
