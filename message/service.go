@@ -6,6 +6,7 @@ import (
 	"github.com/hdlopez/clean-architecture-golang/apierror"
 )
 
+// Service interface defines the methods for message service
 type Service interface {
 	Get(ctx context.Context, ID string) (*Message, error)
 }
@@ -14,6 +15,7 @@ type messageSrv struct {
 	repo Repository
 }
 
+// NewService creates a new instance of Service
 func NewService(r Repository) Service {
 	srv := new(messageSrv)
 	srv.repo = r

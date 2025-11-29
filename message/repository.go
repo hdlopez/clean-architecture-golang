@@ -6,6 +6,7 @@ import (
 	"github.com/hdlopez/clean-architecture-golang/restclient"
 )
 
+// Repository interface defines the methods for message repository
 type Repository interface {
 	Get(ctx context.Context, id string) (*Message, error)
 }
@@ -16,6 +17,7 @@ type msgRepo struct {
 	api restclient.MessageAPI
 }
 
+// NewRepository creates a new instance of Repository
 func NewRepository(api restclient.MessageAPI) Repository {
 	repo := new(msgRepo)
 	repo.api = api

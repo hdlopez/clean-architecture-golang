@@ -5,9 +5,11 @@ import (
 )
 
 const (
+	// MessageAPI is the name of the message API client
 	MessageAPI = "MessageAPI"
 )
 
+// RestClients returns a map of configured resty clients
 func RestClients() map[string]*resty.Client {
 	restClients := map[string]*resty.Client{
 		MessageAPI: resty.New(),

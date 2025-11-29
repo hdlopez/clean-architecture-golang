@@ -5,6 +5,7 @@ func New(code int, message string) *APIError {
 	return &APIError{code, message}
 }
 
+// FromError creates a new APIError from a standard error
 func FromError(err error) *APIError {
 	return New(500, err.Error())
 }

@@ -13,6 +13,7 @@ var (
 	messageAPIURL = "http://localhost:3000/messages/%s"
 )
 
+// MessageAPI interface defines the methods for message API client
 type MessageAPI interface {
 	Get(ctx context.Context, id string) (*Message, error)
 }
@@ -21,10 +22,12 @@ type msgAPI struct {
 	restAPI
 }
 
+// Message entity for restclient
 type Message struct {
 	Text string `json:"text"`
 }
 
+// NewMessageAPI creates a new instance of MessageAPI
 func NewMessageAPI(c *resty.Client) MessageAPI {
 	api := new(msgAPI)
 	api.readClient = c
