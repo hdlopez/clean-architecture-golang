@@ -29,7 +29,7 @@ func (ctrl *messageCtrl) Get(c Ctx) {
 	// 2 - Check and handle validation errors (no business validation)
 
 	// 3 - Make what you need with your request. In this case, get the message by ID.
-	msg, err := ctrl.srv.Get(id)
+	msg, err := ctrl.srv.Get(c, id)
 
 	if err != nil {
 		apiErr, ok := err.(*apierror.APIError)

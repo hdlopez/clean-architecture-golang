@@ -1,6 +1,7 @@
 package restclient
 
 import (
+	"context"
 	"encoding/json"
 	"net/http"
 
@@ -12,9 +13,10 @@ type restAPI struct {
 	readClient *resty.Client
 }
 
-func (api *restAPI) get(url string, h http.Header, v interface{}) error {
+func (api *restAPI) get(ctx context.Context, url string, h http.Header, v interface{}) error {
 	var r *resty.Response
 	req := api.readClient.R()
+	req.SetContext(ctx)
 	req.SetError(&apierror.APIError{})
 
 	r, err := req.Get(url)

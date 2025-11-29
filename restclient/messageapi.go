@@ -1,19 +1,20 @@
 package restclient
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 
 	"github.com/go-resty/resty/v2"
 )
 
-const (
+var (
 	// messageAPIURL is the an example API url to get messages
 	messageAPIURL = "http://localhost:3000/messages/%s"
 )
 
 type MessageAPI interface {
-	Get(id string) (*Message, error)
+	Get(ctx context.Context, id string) (*Message, error)
 }
 
 type msgAPI struct {
@@ -35,11 +36,11 @@ func (api *msgAPI) readURL(id string) string {
 }
 
 // Get a message from our external Message API
-func (api *msgAPI) Get(id string) (*Message, error) {
+func (api *msgAPI) Get(ctx context.Context, id string) (*Message, error) {
 	url := api.readURL(id)
 
 	msg := new(Message)
-	err := api.get(url, http.Header{}, msg)
+	err := api.get(ctx, url, http.Header{}, msg)
 
 	return msg, err
 }

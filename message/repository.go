@@ -1,9 +1,13 @@
 package message
 
-import "github.com/hdlopez/clean-architecture-golang/restclient"
+import (
+	"context"
+
+	"github.com/hdlopez/clean-architecture-golang/restclient"
+)
 
 type Repository interface {
-	Get(id string) (*Message, error)
+	Get(ctx context.Context, id string) (*Message, error)
 }
 
 type msgRepo struct {
@@ -18,9 +22,9 @@ func NewRepository(api restclient.MessageAPI) Repository {
 	return repo
 }
 
-func (repo *msgRepo) Get(id string) (*Message, error) {
+func (repo *msgRepo) Get(ctx context.Context, id string) (*Message, error) {
 	// Getting message from the external API.
-	msg, err := repo.api.Get(id)
+	msg, err := repo.api.Get(ctx, id)
 	if err != nil {
 		return nil, err
 	}
