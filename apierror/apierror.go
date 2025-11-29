@@ -11,16 +11,16 @@ func FromError(err error) *APIError {
 
 // APIError is a trivial implementation of API errors response
 type APIError struct {
-	code    int
-	message string
+	Status  int    `json:"status"`
+	Message string `json:"message"`
 }
 
 // Error function to be compliance with error interface
 func (e *APIError) Error() string {
-	return e.message
+	return e.Message
 }
 
 // Code funciton returns the error status code
 func (e *APIError) Code() int {
-	return e.code
+	return e.Status
 }

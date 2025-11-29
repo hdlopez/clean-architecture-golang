@@ -1,6 +1,8 @@
 package api
 
 import (
+	"context"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,6 +23,7 @@ func New(msgCtrl MessageController) *API {
 // Ctx interface is an abstraction of gin.Context.
 // This interface makes mocking on unit testing easier
 type Ctx interface {
+	context.Context
 	Param(key string) string
 
 	String(code int, format string, values ...interface{})

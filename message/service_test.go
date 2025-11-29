@@ -1,6 +1,7 @@
 package message
 
 import (
+	"context"
 	"errors"
 	"reflect"
 	"testing"
@@ -8,7 +9,7 @@ import (
 
 type mockRepo struct{}
 
-func (repo *mockRepo) Get(id string) (*Message, error) {
+func (repo *mockRepo) Get(ctx context.Context, id string) (*Message, error) {
 	if id == "error" {
 		return nil, errors.New("Mocked error")
 	}
@@ -49,7 +50,7 @@ func Test_messageSrv_Get(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := srv.Get(tt.args.id)
+			got, err := srv.Get(context.Background(), tt.args.id)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("messageSrv.Get() error = %v, wantErr %v", err, tt.wantErr)
 				return

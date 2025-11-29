@@ -1,11 +1,13 @@
 package message
 
 import (
+	"context"
+
 	"github.com/hdlopez/clean-architecture-golang/apierror"
 )
 
 type Service interface {
-	Get(ID string) (*Message, error)
+	Get(ctx context.Context, ID string) (*Message, error)
 }
 
 type messageSrv struct {
@@ -18,7 +20,7 @@ func NewService(r Repository) Service {
 	return srv
 }
 
-func (srv *messageSrv) Get(id string) (*Message, error) {
+func (srv *messageSrv) Get(ctx context.Context, id string) (*Message, error) {
 	// string zero-value is an empty string
 
 	// validate parameters depending your business logic
@@ -30,7 +32,7 @@ func (srv *messageSrv) Get(id string) (*Message, error) {
 	// business logic goes here ...
 
 	// retrieve message using its repository
-	msg, err := srv.repo.Get(id)
+	msg, err := srv.repo.Get(ctx, id)
 
 	// do some stuff
 
