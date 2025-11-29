@@ -7,6 +7,7 @@ import (
 	"github.com/hdlopez/clean-architecture-golang/message"
 )
 
+// MessageController interface defines the methods for message controller
 type MessageController interface {
 	Get(c Ctx)
 }

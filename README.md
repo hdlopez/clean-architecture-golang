@@ -20,19 +20,23 @@ The example uses the following frameworks:
 Clone the repository and execute the following command on the root folder
 
 ``` bash
-go run main.go
+make run
 ```
 
 ## Test
 
 ``` bash
-go test ./...
+make test
+```
+
+## Lint
+
+``` bash
+make lint
 ```
 
 ## Backlog
 
 > This is a work in progress. There's still a lot of work to do. PRs are welcome :)
-* Add (a LOT) of unit tests
-* Use `Context` type to pass parameters across different layers
 * Add an example of database handler module
 
